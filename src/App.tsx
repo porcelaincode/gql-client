@@ -1,25 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import { ApolloProvider } from "@apollo/client";
+
+import { Provider, useSelector } from "react-redux";
+import { Store } from "./redux/store";
+
+// handling auth
+import { client } from "./apollo/Provider";
+
+// screens
+import Home from "./screens/Home";
+import Auth from "./screens/Auth";
+
+const authRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Auth />,
+  },
+]);
+
+const userRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+]);
+
+function Router() {
+  const { user } = useSelector((state: any) => state.userReducer);
+
+  return <RouterProvider router={user ? userRouter : authRouter} />;
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Provider store={Store}>
+        <Router />
+      </Provider>
+    </ApolloProvider>
   );
 }
 
