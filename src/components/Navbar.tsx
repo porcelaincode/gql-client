@@ -2,56 +2,80 @@ import React from "react";
 
 export default function Navbar() {
   return (
-    <div className="relative bg-white">
-      <div className="mx-auto max-w-full px-6">
-        <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
-          <div className="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto sm:h-10"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
-          </div>
-          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <p className="whitespace-nowrap text-base font-medium text-gray-9000 cursor:pointer">
-              Username
-            </p>
-            <a
-              href="#"
-              className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-            >
-              Sign out
-            </a>
-          </div>
-        </div>
-      </div>
+    <header>
+      <nav
+        className="
+        fixed top-0 
+      flex flex-wrap
+      items-center
+      justify-between
+      w-full
+          py-4
+          md:py-0
+          px-4
+          text-lg text-gray-700
+          bg-gray-100
+          "
+      >
+        <button className="flex items-center mt-3">
+          <svg
+            className="w-8 h-8 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
+          </svg>
+          <span className="ml-2 text-sm font-bold">The Assignment App</span>
+        </button>
 
-      <div className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
-        <div className="divide-y-2 divide-gray-50 rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-          <div className="px-5 pt-5 pb-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                  alt="Your Company"
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          id="menu-button"
+          className="h-6 w-6 cursor-pointer md:hidden block"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+
+        <div
+          className="hidden w-full md:flex md:items-center md:w-auto"
+          id="menu"
+        >
+          <ul
+            className="
+          pt-4
+          md:flex
+          md:justify-between 
+          md:pt-0"
+          >
+            <button className="flex items-center w-full h-12 px-3 rounded hover:text-gray-900 mt-1 mb-1">
+              <svg
+                className="w-6 h-6 stroke-current"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
                 />
-              </div>
-              <div className="-mr-2">
-                <a
-                  href="#"
-                  className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                >
-                  Sign Out
-                </a>
-              </div>
-            </div>
-          </div>
+              </svg>
+              <span className="ml-2 text-sm font-medium">Account Settings</span>
+            </button>
+          </ul>
         </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }

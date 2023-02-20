@@ -1,12 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { ApolloProvider } from "@apollo/client";
-
 import { Provider, useSelector } from "react-redux";
 import { Store } from "./redux/store";
-
-// handling auth
-import { client } from "./apollo/Provider";
 
 // screens
 import Home from "./screens/Home";
@@ -33,11 +28,9 @@ function Router() {
 }
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Provider store={Store}>
-        <Router />
-      </Provider>
-    </ApolloProvider>
+    <Provider store={Store}>
+      <Router />
+    </Provider>
   );
 }
 

@@ -20,9 +20,16 @@ export const REGISTER_USER = gql`
 
 export const LOGIN_USER = gql`
   ${USER_FRAGMENT}
-  mutation login($creds: ContactInput!) {
+  mutation login($creds: UserInfoInput) {
     login(creds: $creds) {
       ...UserDetail
     }
+  }
+`;
+
+export const GET_USER = gql`
+  ${USER_FRAGMENT}
+  query getUser {
+    ...UserDetail
   }
 `;

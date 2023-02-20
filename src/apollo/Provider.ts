@@ -3,43 +3,33 @@ import {
   ApolloClient,
   InMemoryCache,
   createHttpLink,
-  split,
+  ApolloLink,
+  concat,
 } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-import { getMainDefinition } from "@apollo/client/utilities";
 
 const BASE_URL = process.env.REACT_APP_SERVER_URI || "localhost:5000";
 
 const URI = `http://${BASE_URL}/graphql`;
-
-console.log(URI);
 
 // http link
 const httpLink = createHttpLink({
   uri: URI,
 });
 
-const authLink = setContext(async () => {
+const authMiddleware = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem("jwtToken");
-  return {
+  operation.setContext({
     headers: {
       Authorization: token ? `Bearer ${JSON.parse(token)}` : "",
     },
-  };
+  });
+
+  return forward(operation);
 });
 
-const link = split(({ query }) => {
-  const definition = getMainDefinition(query);
-  return (
-    definition.kind === "OperationDefinition" &&
-    definition.operation === "subscription"
-  );
-}, authLink.concat(httpLink));
-
 export const client = new ApolloClient({
-  link,
+  link: concat(authMiddleware, httpLink),
   cache: new InMemoryCache({
     addTypename: false,
-    resultCaching: true,
   }),
 });
