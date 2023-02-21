@@ -9,7 +9,7 @@ import {
 
 const BASE_URL = process.env.REACT_APP_SERVER_URI || "localhost:5000";
 
-const URI = `http://${BASE_URL}/graphql`;
+const URI = `https://${BASE_URL}/graphql`;
 
 // http link
 const httpLink = createHttpLink({
