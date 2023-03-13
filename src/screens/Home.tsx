@@ -1,4 +1,4 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
 import { useDispatch, useSelector } from "react-redux";
 
 import Loading from "../components/Loading";
