@@ -30,6 +30,8 @@ export const LOGIN_USER = gql`
 export const GET_USER = gql`
   ${USER_FRAGMENT}
   query getUser {
-    ...UserDetail
+    getUser {
+      ...UserDetail
+    }
   }
 `;

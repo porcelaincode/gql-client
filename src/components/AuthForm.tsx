@@ -8,7 +8,7 @@ import { setUser } from "../redux/actions";
 export default function AuthForm() {
   const dispatch: any = useDispatch();
 
-  const [remember, setRemember] = useState(false);
+  const [remember, setRemember] = useState(true);
   const [reg, setReg] = useState<boolean>(false);
   const [hidden, setHidden] = useState<boolean>(true);
 

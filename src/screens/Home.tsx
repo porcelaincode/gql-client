@@ -1,16 +1,18 @@
-import { useQuery } from "@apollo/client";
-import { useDispatch } from "react-redux";
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { useDispatch, useSelector } from "react-redux";
 
 import Loading from "../components/Loading";
 import Sidebar from "../components/Sidebar";
 
 import { setUser } from "../redux/actions";
 import { GET_USER } from "../apollo/graphql/users";
+import { useEffect } from "react";
 
 export default function Home() {
   const dispatch: any = useDispatch();
+  const { user } = useSelector((state: any) => state.userReducer);
 
-  const { loading } = useQuery(GET_USER, {
+  const [fetchUser, { loading }] = useLazyQuery(GET_USER, {
     fetchPolicy: "no-cache",
     onCompleted(data) {
       dispatch(setUser(data.getUser, true));
@@ -19,6 +21,13 @@ export default function Home() {
       alert(error.message);
     },
   });
+
+  useEffect(() => {
+    if (!user) {
+      fetchUser();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <div className="flex">
